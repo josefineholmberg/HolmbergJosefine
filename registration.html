@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcelona guide</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="nav">
+            <ul>
+                <li class="link">
+                    <a href="login.html">SIGN IN</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="split">
+        <div class="splitside">
+            <div class="header">
+                <h1>Barcelona</h1>
+                <h5>Create an account to join our community, sharing and discussing all things tourism in Barcelona</h5>
+            </div>
+        </div>
+
+        <div class="splitside">
+            <div class="container">
+                <form name="register" id="register-form" action="registerDatabase.php" method="post" onsubmit="return test()">
+                    <h2>Sign Up</h2>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="username">Username</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="username" name="username" placeholder="Create your username" required>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="password" id="password" name="password" placeholder="Create your password" required>
+                        </div>
+                    </div>
+            
+            
+                    <div class="row">
+                        <input type="submit" name="submit" value="Sign up">
+                    </div>
+                    <div class="login-register">
+                        <p>Already have an account? <a href="login.html" class="login-link">Sign In</a></p>
+                    </div>
+            
+                    
+                </form>
+            </div>
+            
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+
+
+<!-- client-side validering av input från register-form-->
+<script type="text/javascript">
+    function test() {
+        var hasError = false;
+        var username = document.forms['register']['username'].value;
+        var email = document.forms["register"]["email"].value;
+        var psw = document.forms["register"]["password"].value;
+        let error = "";
+
+        if (!validateName(username)) {
+            error += "Please choose an username";
+            hasError = true;
+        }
+        if (!validateEmail(email)) {
+            error += "Enter a valid email\r\n";
+            hasError = true;
+        }
+        if (!passwordCheck(psw)) {
+            error += "Enter a valid password";
+            hasError = true;
+        }
+        if (hasError) {
+            window.alert(error);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function validateName(name) {
+        if (name.trim() === "") {
+            return false;
+        }
+        if (/^_+$/.test(name)) {
+            return false;
+        }
+        return true;
+    }
+
+    function validateEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    function passwordCheck(psw) {
+        //lösenordet måste vara minst sex tecken långt och innehålla minst en stor bokstav, minst en liten bokstav och minst en siffra
+        var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        return passwordRegex.test(psw);
+    }
+</script>
+</body>
+</html>
